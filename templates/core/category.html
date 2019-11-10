@@ -16,7 +16,7 @@
               <div class="col-md-12">
                 {% for post in posts %}
                 <div class="post-entry-horzontal">
-                  <a href="/posts/{{post.slug}}">
+                  <a href="{% url 'core:post' post.slug %}">
                     <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(images/img_10.jpg);">
                         <img height="250" src="/static/media/{{ post.image }}">
                     </div>
