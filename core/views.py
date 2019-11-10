@@ -19,9 +19,10 @@ def index(request):
     return render(request, 'core/category.html', ctx)
 
 
-def leavecomment(request, article_slug):
+def leave_comment(request, article_slug, *args):
     post = Post.objects.filter(slug=article_slug).first()
+    print('11', request.POST.get('username'))
     post.comment_set.create(
-        username=request.POST['name'],
+        username=request.POST['username'],
         text=request.POST['text'])
-    return article(request, article_slug)
+    return HttpResponseRedirect( reverse('core:post', args=(post.slug,)))
