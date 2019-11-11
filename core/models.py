@@ -1,7 +1,6 @@
 from django.db import models
-
-# Create your models here.
 from autoslug import AutoSlugField
+# Create your models here.
 
 
 class Post(models.Model):
@@ -40,10 +39,6 @@ class Post(models.Model):
         auto_now_add=True,
         verbose_name='Дата створення'
     )
-
-    @classmethod
-    def find_by_slug(cls, slug):
-        return cls.objects.filter(slug=slug).first()
 
     @classmethod
     def get_posts_count(cls):

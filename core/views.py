@@ -6,16 +6,26 @@ from .models import Post, Comment
 
 
 def article(request, article_slug):
-    post = Post.objects.filter(slug=article_slug).first()
+    ctx = {}
+    try:
+        post = Post.objects.filter(slug=article_slug).first()
+        ctx['post'] = post
+    except:
+        raise Http404("Публікацію не знайдено")
     comments = Comment.objects.filter(post=post)
-    ctx = {'post': post, 'comments': comments}
+    ctx['comments'] = comments
     return render(request, 'core/blog-single.html', ctx)
 
 
 def index(request):
-    posts = Post.objects.all().order_by('-created')
+    ctx = {}
+    try:
+        posts = Post.objects.all().order_by('-created')
+        ctx['posts'] = posts
+    except:
+        raise Http404("Публікацію не знайдено")
     posts_count = Post.get_posts_count()
-    ctx = {'posts': posts, 'posts_count': posts_count}
+    ctx['posts_count'] = posts_count
     return render(request, 'core/category.html', ctx)
 
 
