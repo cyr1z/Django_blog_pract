@@ -52,6 +52,10 @@ class Post(models.Model):
     def short_text(self):
         return f"{self.text[:50]}..." if len(self.text) > 50 else self.text
 
+    @property
+    def comments(self):
+        return Comment.objects.filter(post=self)
+
     def __str__(self):
         return f"{self.title}, {self.updated.date()}"
 

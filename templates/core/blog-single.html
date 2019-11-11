@@ -27,7 +27,7 @@
             <div class="pt-5">
               <h3 class="mb-5">Кількість коментарів: {{ post.comments_count }}</h3>
               <ul class="comment-list">
-                  {% for comment in comments %}
+                  {% for comment in post.comments %}
                 <li class="comment">
 {#                  <div class="vcard">#}
 {#                    <img src="images/person_1.jpg" alt="Image placeholder">#}
